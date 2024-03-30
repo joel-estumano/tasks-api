@@ -8,9 +8,15 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 /**
+ * 
+ * @OA\Server(
+ *      url="https://sambli.com.br/api\\",
+ *      description="API web server"
+ * ),
+ * 
  * @OA\Server(
  *      url="http://127.0.0.1:8000/api\\",
- *      description="API server"
+ *      description="API local server"
  * ),
  *
  * @OA\Info(

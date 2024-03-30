@@ -11,8 +11,12 @@
     },
     "servers": [
         {
+            "url": "https://sambli.com.br/api\\\\",
+            "description": "API web server"
+        },
+        {
             "url": "http://127.0.0.1:8000/api\\\\",
-            "description": "API server"
+            "description": "API local server"
         }
     ],
     "paths": {
