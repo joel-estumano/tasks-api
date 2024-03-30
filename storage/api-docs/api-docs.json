@@ -196,7 +196,7 @@
                                     "time": {
                                         "description": "task time",
                                         "type": "string",
-                                        "format": "date-time"
+                                        "example": "2024-03-30T17:27:11.00"
                                     }
                                 },
                                 "type": "object"
