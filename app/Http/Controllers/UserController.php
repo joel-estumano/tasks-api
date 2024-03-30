@@ -177,6 +177,11 @@ class UserController extends Controller
      *          @OA\JsonContent(ref="#/components/schemas/DefaultResponse"),
      *     ),
      *     @OA\Response(
+     *          response=404
+     *          description="not found",
+     *          @OA\JsonContent(ref="#/components/schemas/DefaultResponse"),
+     *     ),
+     *     @OA\Response(
      *          response=401,
      *          description="unauthorized",
      *          @OA\JsonContent(ref="#/components/schemas/UnauthorizedResponse"),
