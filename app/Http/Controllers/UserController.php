@@ -137,7 +137,7 @@ class UserController extends Controller
             ]);
             return response()->json($resp->original, Response::HTTP_OK);
         };
-        return response()->json('Unauthorized', Response::HTTP_UNAUTHORIZED);
+        return response()->json(['message' => 'unauthorized'], Response::HTTP_UNAUTHORIZED);
     }
 
     /**
