@@ -1,0 +1,601 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Tasks API",
+        "contact": {
+            "name": "company",
+            "url": "https://example.test",
+            "email": "admin@example.test"
+        },
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api\\\\",
+            "description": "API server"
+        }
+    ],
+    "paths": {
+        "tasks/add": {
+            "post": {
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "add a task",
+                "operationId": "89307c61d252f3f9fa882878131f3263",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "time"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "task name",
+                                        "type": "string",
+                                        "example": "Gym class"
+                                    },
+                                    "description": {
+                                        "description": "task description",
+                                        "type": "string",
+                                        "example": "Practical exercises part 1"
+                                    },
+                                    "time": {
+                                        "description": "task time",
+                                        "type": "string",
+                                        "example": "2024-03-30T17:27:11.00"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaskResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "tasks/list": {
+            "get": {
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "list",
+                "operationId": "fda38d58ddf43d38ebc14e411a6d506b",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TasksResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "tasks/read/{id}": {
+            "get": {
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "read a task",
+                "operationId": "a2565c7d8d8a192b5c412e23e995a049",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "task id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaskResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "tasks/edit/{id}": {
+            "patch": {
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "edit a task",
+                "operationId": "25dbcd556876fe37efc17c07cba9c773",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "task id",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "task name",
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "description": "task description",
+                                        "type": "string"
+                                    },
+                                    "time": {
+                                        "description": "task time",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TaskResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "tasks/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "delete a task",
+                "operationId": "3436baf5033de1c419c825e97d05797f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "task id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DefaultResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "user/register": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "register a user",
+                "operationId": "c6c7641c9ab252a61b1bdeefebc3170c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "user name",
+                                        "type": "string",
+                                        "example": "Jane Doe"
+                                    },
+                                    "email": {
+                                        "description": "user email",
+                                        "type": "string",
+                                        "example": "jane@mail.com"
+                                    },
+                                    "password": {
+                                        "description": "user password",
+                                        "type": "string",
+                                        "example": "asdfzxc8"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "user/edit": {
+            "patch": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "edit a user",
+                "operationId": "edd6df648bf2a48ab43fd9839c96c92a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "user name",
+                                        "type": "string",
+                                        "example": "Jane Doe"
+                                    },
+                                    "email": {
+                                        "description": "user email",
+                                        "type": "string",
+                                        "example": "jane@mail.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "user/logout": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "logout a user",
+                "operationId": "8687dda1c4f87651a19f36ed20165531",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DefaultResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Default": {
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "DefaultResponse": {
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/Default"
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "default": "200"
+                    }
+                },
+                "type": "object"
+            },
+            "UnauthorizedResponse": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "default": "Unauthenticated."
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "email_verified_at": {
+                        "type": "string",
+                        "default": "null"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "UserResponse": {
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "default": "200"
+                    }
+                },
+                "type": "object"
+            },
+            "Task": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "time": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "user_id": {
+                        "type": "integer"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "TaskResponse": {
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/Task"
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "default": "200"
+                    }
+                },
+                "type": "object"
+            },
+            "TasksResponse": {
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Task"
+                        }
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "default": "200"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearer_token": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "tasks",
+            "description": "tasks related operations"
+        },
+        {
+            "name": "user",
+            "description": "user related operations"
+        }
+    ]
+}
