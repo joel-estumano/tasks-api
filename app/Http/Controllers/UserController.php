@@ -90,10 +90,10 @@ class UserController extends Controller
      *                  example="Jane Doe"
      *                  ),
      *                  @OA\Property(
-     *                  property="email",
-     *                  description="user email",
+     *                  property="password",
+     *                  description="user password",
      *                  type="string",
-     *                  example="jane@mail.com"
+     *                  example="asdfzxc8"
      *              ),
      *            ),
      *         ),
@@ -121,7 +121,7 @@ class UserController extends Controller
         $user->save();
         return response()->json($user, Response::HTTP_OK);
     }
-
+    
     public function login(Request $req)
     {
         $credentials = $req->only('email', 'password');
@@ -133,7 +133,7 @@ class UserController extends Controller
             $parts = explode('|', $token);
             $resp = response()->json([
                 'user' => $user,
-                'acces_token' => $parts[1],
+                'access_token' => $parts[1],
                 'token_type' => 'Bearer'
             ]);
             return response()->json($resp->original, Response::HTTP_OK);

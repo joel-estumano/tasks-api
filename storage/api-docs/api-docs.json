@@ -352,10 +352,10 @@
                                         "type": "string",
                                         "example": "Jane Doe"
                                     },
-                                    "email": {
-                                        "description": "user email",
+                                    "password": {
+                                        "description": "user password",
                                         "type": "string",
-                                        "example": "jane@mail.com"
+                                        "example": "asdfzxc8"
                                     }
                                 },
                                 "type": "object"

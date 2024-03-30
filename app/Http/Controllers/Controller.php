@@ -119,7 +119,7 @@ use Illuminate\Routing\Controller as BaseController;
  *         property="status",
  *         type="integer"
  *     )
- * )
+ * ),
  *
  * @OA\Schema(
  *     schema="Task",
