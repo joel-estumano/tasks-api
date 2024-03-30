@@ -115,7 +115,7 @@ class UserController extends Controller
         $user = $req->user();
         $validator = Validator::make($req->all(), [
             'name' => 'sometimes|max:255',
-            'email' => 'sometimes|email|unique:users,email,' . $user->id, 
+            'email' => 'sometimes|email|unique:users,email,' . $user->id,
         ]);
         $user->fill($req->all());
         $user->save();
@@ -127,8 +127,11 @@ class UserController extends Controller
         $credentials = $req->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = $req->user();
-            $token = $user->createToken('auth_token')->plainTextToken;
+            $auth = $user->createToken('auth_token');
+            // echo json_encode($auth);
+            $token = $auth->plainTextToken;
             $resp = response()->json([
+                'user' => $user,
                 'acces_token' => $token,
                 'token_type' => 'Bearer'
             ]);
