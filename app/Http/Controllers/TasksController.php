@@ -54,7 +54,7 @@ class TasksController extends Controller
      *     ),
      *     @OA\Response(
      *          response=401,
-     *          description="Unauthorized",
+     *          description="unauthorized",
      *          @OA\JsonContent(ref="#/components/schemas/UnauthorizedResponse"),
      *     )
      * )
@@ -83,7 +83,7 @@ class TasksController extends Controller
      *     ),
      *     @OA\Response(
      *          response=401,
-     *          description="Unauthorized",
+     *          description="unauthorized",
      *          @OA\JsonContent(ref="#/components/schemas/UnauthorizedResponse"),
      *     )
      * )
@@ -114,7 +114,7 @@ class TasksController extends Controller
      *     ),
      *     @OA\Response(
      *          response=401,
-     *          description="Unauthorized",
+     *          description="unauthorized",
      *          @OA\JsonContent(ref="#/components/schemas/UnauthorizedResponse"),
      *     )
      * )
@@ -126,7 +126,7 @@ class TasksController extends Controller
         if ($task) {
             return response()->json($task, Response::HTTP_OK);
         } else {
-            return response()->json(['error' => 'not found'], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'not found'], Response::HTTP_NOT_FOUND);
         }
     }
 
@@ -173,7 +173,7 @@ class TasksController extends Controller
      *     ),
      *     @OA\Response(
      *          response=401,
-     *          description="Unauthorized",
+     *          description="unauthorized",
      *          @OA\JsonContent(ref="#/components/schemas/UnauthorizedResponse"),
      *     )
      * )
@@ -192,7 +192,7 @@ class TasksController extends Controller
             $task->save();
             return response()->json($task, Response::HTTP_OK);
         } else {
-            return response()->json(['error' => 'not found'], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'not found'], Response::HTTP_NOT_FOUND);
         }
     }
 
@@ -220,7 +220,7 @@ class TasksController extends Controller
      *     ),
      *     @OA\Response(
      *          response=401,
-     *          description="Unauthorized",
+     *          description="unauthorized",
      *          @OA\JsonContent(ref="#/components/schemas/UnauthorizedResponse"),
      *     )
      * )
@@ -233,7 +233,7 @@ class TasksController extends Controller
             $task->delete();
             return response()->json(['message' => 'task successfully deleted'], Response::HTTP_OK);
         } else {
-            return response()->json(['error' => 'not found'], Response::HTTP_NOT_FOUND);
+            return response()->json(['message' => 'not found'], Response::HTTP_NOT_FOUND);
         }
     }
 }
