@@ -25,6 +25,7 @@ Route::prefix('user')->group(function () {
     Route::post('/register', [UserController::class, 'register']);
     Route::middleware('auth:sanctum')->patch('/edit', [UserController::class, 'edit']);
     Route::middleware('auth:sanctum')->get('/logout', [UserController::class, 'logout']);
+    Route::middleware('auth:sanctum')->get('/logout/all', [UserController::class, 'logoutAll']);
 });
 
 Route::prefix('tasks')->middleware('auth:sanctum')->group(function () {

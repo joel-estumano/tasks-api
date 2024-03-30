@@ -121,7 +121,7 @@ class UserController extends Controller
         $user->save();
         return response()->json($user, Response::HTTP_OK);
     }
-    
+
     public function login(Request $req)
     {
         $credentials = $req->only('email', 'password');
@@ -163,5 +163,29 @@ class UserController extends Controller
     {
         $req->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'logout successfully'], Response::HTTP_OK);
+    }
+
+    /**
+     * @OA\Get(
+     *     path="user/logout/all",
+     *     summary="logout a user of all decvices",
+     *     security={{"bearer_token":{}}},
+     *     tags={"user"},
+     *     @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/DefaultResponse"),
+     *     ),
+     *     @OA\Response(
+     *          response=401,
+     *          description="unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/UnauthorizedResponse"),
+     *     )
+     * )
+     */
+    public function logoutAll(Request $req)
+    {
+        $req->user()->tokens()->delete();
+        return response()->json(['message' => 'logout all devices successfully'], Response::HTTP_OK);
     }
 }

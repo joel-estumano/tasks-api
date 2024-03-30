@@ -427,6 +427,42 @@
                     }
                 ]
             }
+        },
+        "user/logout/all": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "logout a user of all decvices",
+                "operationId": "a55bfe4d2bb9f67af77713e4a0851b98",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DefaultResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
         }
     },
     "components": {
