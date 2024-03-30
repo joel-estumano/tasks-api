@@ -105,7 +105,7 @@ class UserController extends Controller
      *     ),
      *     @OA\Response(
      *          response=401,
-     *          description="Unauthorized",
+     *          description="unauthorized",
      *          @OA\JsonContent(ref="#/components/schemas/UnauthorizedResponse"),
      *     )
      * )
@@ -130,9 +130,10 @@ class UserController extends Controller
             $auth = $user->createToken('auth_token');
             // echo json_encode($auth);
             $token = $auth->plainTextToken;
+            $parts = explode('|', $token);
             $resp = response()->json([
                 'user' => $user,
-                'acces_token' => $token,
+                'acces_token' => $parts[1],
                 'token_type' => 'Bearer'
             ]);
             return response()->json($resp->original, Response::HTTP_OK);
@@ -153,7 +154,7 @@ class UserController extends Controller
      *     ),
      *     @OA\Response(
      *          response=401,
-     *          description="Unauthorized",
+     *          description="unauthorized",
      *          @OA\JsonContent(ref="#/components/schemas/UnauthorizedResponse"),
      *     )
      * )

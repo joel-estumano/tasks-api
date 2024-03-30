@@ -117,8 +117,7 @@ use Illuminate\Routing\Controller as BaseController;
  *     ),
  *     @OA\Property(
  *         property="status",
- *         type="integer",
- *         default="200"
+ *         type="integer"
  *     )
  * )
  *
