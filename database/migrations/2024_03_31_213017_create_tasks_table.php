@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration
             $table->dateTime('time');
             $table->timestamps();
             $table->unsignedBigInteger('user_id');
+            $table->boolean('completed')->default(false);
 
             // Chave estrangeira para a tabela de usuários
             $table

@@ -144,6 +144,11 @@ use Illuminate\Routing\Controller as BaseController;
  *         property="user_id",
  *         type="integer",
  *     ),
+ *     @OA\Property(
+ *         property="completed",
+ *         type="boolean",
+ *         example="false"
+ *     ),
  *      @OA\Property(
  *         property="created_at",
  *         type="string",

@@ -11,7 +11,8 @@ class Task extends Model
         'name',
         'description',
         'time',
-        'user_id'
+        'user_id',
+        'completed'
     ];
 
     public function user()

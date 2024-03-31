@@ -201,6 +201,11 @@
                                         "description": "task time",
                                         "type": "string",
                                         "example": "2024-03-30T17:27:11.00"
+                                    },
+                                    "completed": {
+                                        "description": "task completed",
+                                        "type": "boolean",
+                                        "example": "true"
                                     }
                                 },
                                 "type": "object"
@@ -563,6 +568,10 @@
                     },
                     "user_id": {
                         "type": "integer"
+                    },
+                    "completed": {
+                        "type": "boolean",
+                        "example": "false"
                     },
                     "created_at": {
                         "type": "string",

@@ -66,6 +66,7 @@ class TasksController extends Controller
         $task->description = $req->description;
         $task->time = $req->time;
         $task->user_id = $req->user->id;
+        $task->completed = false;
         $task->save();
         return response()->json($task, Response::HTTP_CREATED);
     }
@@ -163,6 +164,12 @@ class TasksController extends Controller
      *              type="string",
      *              example="2024-03-30T17:27:11.00"
      *              ),
+     *              @OA\Property(
+     *              property="completed",
+     *              description="task completed",
+     *              type="boolean",
+     *              example="true"
+     *              ),
      *         ),
      *       ),
      *     ),
@@ -183,7 +190,8 @@ class TasksController extends Controller
         $req->validate([
             'name' => 'string',
             'description' => 'string',
-            'time' => 'string'
+            'time' => 'string',
+            'completed' => 'boolean'
         ]);
         $user = $req->user();
         $task = $this->find($id, $user);
