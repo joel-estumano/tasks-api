@@ -177,11 +177,6 @@ class UserController extends Controller
      *          @OA\JsonContent(ref="#/components/schemas/DefaultResponse"),
      *     ),
      *     @OA\Response(
-     *          response=404
-     *          description="not found",
-     *          @OA\JsonContent(ref="#/components/schemas/DefaultResponse"),
-     *     ),
-     *     @OA\Response(
      *          response=401,
      *          description="unauthorized",
      *          @OA\JsonContent(ref="#/components/schemas/UnauthorizedResponse"),
@@ -191,6 +186,9 @@ class UserController extends Controller
     public function logoutAll(Request $req)
     {
         $req->user()->tokens()->delete();
+
+        echo($req->user());
+
         return response()->json(['message' => 'logout all devices successfully'], Response::HTTP_OK);
     }
 }
