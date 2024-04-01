@@ -74,7 +74,7 @@ class TasksController extends Controller
     /**
      * @OA\Get(
      *     path="tasks/list",
-     *     summary="list",
+     *     summary="list all tasks of a user",
      *     security={{"bearer_token":{}}},
      *     tags={"tasks"},
      *     @OA\Response(
@@ -93,6 +93,38 @@ class TasksController extends Controller
     {
         $user = $req->user();
         $tasks = Task::where('user_id', $user->id)->get();
+        return response()->json($tasks, Response::HTTP_OK);
+    }
+
+    /**
+     * @OA\Get(
+     *     path="tasks/list/{date}",
+     *     summary="list tasks by date",
+     *     security={{"bearer_token":{}}},
+     *     tags={"tasks"},
+     *     @OA\Parameter(
+     *         name="date",
+     *         in="path",
+     *         description="task date",
+     *         required=true,
+     *         example="0000-00-00"
+     *     ),
+     *     @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/TasksResponse"),
+     *     ),
+     *     @OA\Response(
+     *          response=401,
+     *          description="unauthorized",
+     *          @OA\JsonContent(ref="#/components/schemas/UnauthorizedResponse"),
+     *     )
+     * )
+     */
+    public function listByDate(Request $req, $date)
+    {
+        $user = $req->user();
+        $tasks = Task::where('user_id', $user->id)->whereDate('time', $date)->get();
         return response()->json($tasks, Response::HTTP_OK);
     }
 

@@ -31,6 +31,7 @@ Route::prefix('user')->group(function () {
 Route::prefix('tasks')->middleware('auth:sanctum')->group(function () {
     Route::post('/add', [TasksController::class, 'add']);
     Route::get('/list', [TasksController::class, 'list']);
+    Route::get('/list/{date}', [TasksController::class, 'listByDate']);
     Route::get('/read/{id}', [TasksController::class, 'read']);
     Route::patch('/edit/{id}', [TasksController::class, 'edit']);
     Route::delete('delete/{id}', [TasksController::class, 'delete']);

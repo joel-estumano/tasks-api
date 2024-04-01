@@ -93,8 +93,53 @@
                 "tags": [
                     "tasks"
                 ],
-                "summary": "list",
+                "summary": "list all tasks of a user",
                 "operationId": "fda38d58ddf43d38ebc14e411a6d506b",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TasksResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthorizedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "tasks/list/{date}": {
+            "get": {
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "list tasks by date",
+                "operationId": "838b7ac342deee5a78535ea6f6d6feb4",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "task date",
+                        "required": true,
+                        "example": "0000-00-00"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
